@@ -34,7 +34,7 @@ void WordQueryServer::onConnection(const TcpConnectionPtr & conn){
 void WordQueryServer::onMessage(const TcpConnectionPtr & conn){
 		std::string s(conn->receive());
 
-		cout << "recved string is " << s << endl;
+		cout << "recved querywords is " << s << endl;
 		//在IO线程中，将任务的执行交给线程池处理
 		_pthreadPool.addTask(std::bind(&WordQueryServer::doTaskThread,
 					this, conn, s));
@@ -43,10 +43,8 @@ void WordQueryServer::onMessage(const TcpConnectionPtr & conn){
 
 void WordQueryServer::doTaskThread(const TcpConnectionPtr & conn, const string & msg){
 	string s = _query.doQuery(msg);
-	string s1 =to_string(s.size()).append("\n");
-	s1.append(s);
+	string s1 =to_string(s.size()).append("\n").append(s);
 
-	cout << s1 << endl;
 	conn->sendInLoop(s1);
 }
 

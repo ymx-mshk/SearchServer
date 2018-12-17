@@ -114,7 +114,6 @@ string WordQuery::doQuery(const string & str){
 	vector<double> queryWordsWeight = getQueryWordsWeightVector(queryWords);
 	vector<pair<int, vector<double>>> resultVec;
 	if (executeQuery(queryWords, resultVec)){
-		cout << resultVec.size() << " = find" << endl;
 		multimap<double, int> result;
 		for (const auto & item : resultVec){
 			result.emplace(calcCos(queryWordsWeight, item.second), item.first);
@@ -124,7 +123,6 @@ string WordQuery::doQuery(const string & str){
 		for (auto it = result.rbegin(); it != result.rend(); ++it){
 			resultDocId.push_back(it->second);
 		}
-		cout << resultDocId.size() << " = process" << endl;
 		return createJson(resultDocId, queryWords);
 	}else {
 		return returnNoAnswer();
