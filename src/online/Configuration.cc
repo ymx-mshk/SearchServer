@@ -45,7 +45,7 @@ void Configuration::init(const string & file){
 	std::string line;
 	std::vector<string> vec;
 	while (getline(input, line)){
-		if (!line.size())
+		if (line.empty())
 			continue;
 		boost::split(vec, line, boost::is_any_of(" \t,:"), boost::token_compress_on);
 		_conf.emplace(vec[0], vec[1]);

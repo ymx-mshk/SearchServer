@@ -49,8 +49,8 @@ string WebPage::getSentenceByWord(const string & word, const string & str){
 	if (pos == string::npos)
 		return string();
 
-	decltype(pos) beg = str.rfind("\xe3\x80\x82", pos),
-				  end = str.find("\xe3\x80\x82", pos);
+	decltype(pos) beg = str.rfind(/*"\xe3\x80\x82"*/u8"。", pos),
+				  end = str.find(/*"\xe3\x80\x82"*/u8"。", pos);
 	if (beg == string::npos){
 		beg = 0;
 	}else {

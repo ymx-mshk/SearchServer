@@ -29,7 +29,7 @@ void WordQuery::loadOffsetLib(){
 	int docid;
 	size_t oft, length; //oft is offset
 	while(getline(ifs, line)){
-		if (!line.size())
+		if (line.empty())
 			continue;
 		istringstream ss(line);
 

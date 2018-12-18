@@ -91,7 +91,7 @@ void PageLib::addEssay(const XMLElement * elmtItem){
 		link = elmtLink->GetText();
 	}
 
-	if (!link.size())
+	if (link.empty())
 		return;
 
 	const XMLElement * elmtContent = elmtItem->FirstChildElement("content:encoded");
@@ -110,7 +110,7 @@ void PageLib::addEssay(const XMLElement * elmtItem){
 		replace_all(s, "&quot;", "\"");
 
 		//没有title的话用content的第一句作为title
-		if (!title.size()){
+		if (title.empty()){
 			title = string(s, 0, s.find("\xe3\x80\x82"));//句号
 		}
 
